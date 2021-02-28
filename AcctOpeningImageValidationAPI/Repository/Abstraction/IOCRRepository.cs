@@ -6,6 +6,11 @@ namespace AcctOpeningImageValidationAPI.Repository.Abstraction
 {
     public interface IOCRRepository
     {
+        /// <summary>
+        /// Abstract Method for OCR Validation
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
        OCRUsage ValidateUsage (string email);
     }
 }

@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AcctOpeningImageValidationAPI.Repository.Abstraction;
+using HelperLib.Exceptions;
 using IdentificationValidationLib;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
@@ -116,7 +117,14 @@ namespace AcctOpeningImageValidationAPI.Controllers
         {
             // var test = Configuration.GetSection("AppSettings").GetSection("subscriptionKey").Value;
 
-            _ocrRepository.ValidateUsage(UserEmail);
+            try
+            {
+                _ocrRepository.ValidateUsage(UserEmail);
+
+            } catch (MaximumOCRUsageException e) {
+
+            }
+
 
             var bypass = Configuration.GetSection("AppSettings").GetSection("ByPassIdCards").Value;
             if (bypass.ToLower() == "true")
