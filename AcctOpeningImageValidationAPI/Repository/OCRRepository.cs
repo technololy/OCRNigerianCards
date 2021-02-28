@@ -39,7 +39,7 @@ namespace AcctOpeningImageValidationAPI.Repository
 
             if(usage == null)
             {
-                var entity = new OCRUsage { Count = 1, EmailAddress = email };
+                var entity = new OCRUsage { Count = 1, EmailAddress = email};
 
                 CreateAndReturn(entity);
 

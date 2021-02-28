@@ -52,6 +52,7 @@ namespace AcctOpeningImageValidationAPI.Repository
         public void Create(T entity)
         {
             entity.DateModified = DateTime.Now;
+            entity.DateCreated = DateTime.Now;
             entity.IsEnabled = true;
             _context.Add(entity);
             Save();
