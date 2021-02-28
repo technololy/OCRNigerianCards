@@ -21,6 +21,7 @@ namespace AcctOpeningImageValidationAPI.Models
         public DbSet<OCRResponse> OCRResponses { get; set; }
         public DbSet<ScannedIDCardDetails> ScannedIDCardDetail { get; set; }
         public DbSet<FacialValidation> FacialValidations { get; set; }
+        public DbSet<OCRUsage> OCRUsages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
