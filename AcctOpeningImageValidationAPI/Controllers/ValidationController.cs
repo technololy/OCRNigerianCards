@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
+using AcctOpeningImageValidationAPI.Repository.Abstraction;
 using IdentificationValidationLib;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
@@ -26,19 +27,21 @@ namespace AcctOpeningImageValidationAPI.Controllers
         private readonly IFaceValidation faceValidation;
         private readonly Models.SterlingOnebankIDCardsContext context;
         private IConfiguration Configuration { get; set; }
-
+        private readonly IOCRRepository _ocrRepository;
 
         public ValidationController(IConfiguration configuration,
             IComputerVision _computerVision,
             IExternalImageValidationService externalImageValidationService,
             ReadAttributesFromFacialImage.IFaceValidation faceValidation,
-            Models.SterlingOnebankIDCardsContext _context)
+            Models.SterlingOnebankIDCardsContext _context,
+            IOCRRepository ocrRepository)
         {
             Configuration = configuration;
             this.computerVision = _computerVision;
             this.externalImageValidationService = externalImageValidationService;
             this.faceValidation = faceValidation;
             this.context = _context;
+            _ocrRepository = ocrRepository;
         }
         [HttpPost]
         [Route("ValidateIdentificationImage")]
@@ -113,6 +116,7 @@ namespace AcctOpeningImageValidationAPI.Controllers
         {
             // var test = Configuration.GetSection("AppSettings").GetSection("subscriptionKey").Value;
 
+            _ocrRepository.ValidateUsage(UserEmail);
 
             var bypass = Configuration.GetSection("AppSettings").GetSection("ByPassIdCards").Value;
             if (bypass.ToLower() == "true")
