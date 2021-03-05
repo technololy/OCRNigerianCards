@@ -170,8 +170,6 @@ namespace IdentificationValidationLib
         public async Task<(bool isSuccess, string message)> PerformOcrWithAzureAI(string imageFilePath, Models.Camudatafield camudatafield = null)
         {
 
-
-
             bool isSuccess = false;
             string responseMessage = "";
 

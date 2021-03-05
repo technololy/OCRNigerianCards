@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AcctOpeningImageValidationAPI.Helpers;
 using AcctOpeningImageValidationAPI.Repository;
 using AcctOpeningImageValidationAPI.Repository.Abstraction;
+using AcctOpeningImageValidationAPI.Repository.Services.Implementation;
 using IdentificationValidationLib;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,9 @@ namespace AcctOpeningImageValidationAPI
             var connection = Configuration.GetConnectionString("SterlingOnebankIDCards");
             services.AddDbContext<Models.SterlingOnebankIDCardsContext>(options => options.UseSqlServer(connection));
 
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
             services.AddControllers();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<IComputerVision, ComputerVision>();
@@ -39,7 +44,9 @@ namespace AcctOpeningImageValidationAPI
             services.AddScoped<IExternalImageValidationService, ExternalImageValidationService>();
             services.AddScoped<ReadAttributesFromFacialImage.IFaceValidation, ReadAttributesFromFacialImage.FaceValidation>();
             services.AddScoped<IOCRRepository, OCRRepository>();
+            services.AddScoped<RestClientService, RestClientService>();
             // Register the Swagger generator, defining 1 or more Swagger documents
+
             services.AddSwaggerGen();
 
         }

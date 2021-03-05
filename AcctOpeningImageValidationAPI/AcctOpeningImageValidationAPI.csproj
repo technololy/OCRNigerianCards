@@ -14,6 +14,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
+    <PackageReference Include="Refit" Version="6.0.24" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IdentificationValidationLib\IdentificationValidationLib.csproj">
@@ -37,6 +38,11 @@
     <Folder Include="Repository\" />
     <Folder Include="Repository\Abstraction\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Repository\Services\" />
+    <Folder Include="Repository\Services\Abstraction\" />
+    <Folder Include="Repository\Services\Implementation\" />
+    <Folder Include="Repository\Services\Response\" />
+    <Folder Include="Repository\Services\Request\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Models\ExtracteTextModel.cs" />
