@@ -140,7 +140,6 @@ namespace AcctOpeningImageValidationAPI.Controllers
             try
             {
                 _ocrRepository.ValidateUsage(result.Url);
-
             }
             catch (MaximumOCRUsageException e)
             {
